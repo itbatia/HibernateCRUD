@@ -2,6 +2,8 @@ package com.itbatia.hibernate.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -11,8 +13,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 public class Writer {
 
     @Id
@@ -24,6 +24,7 @@ public class Writer {
     private String name;
 
     @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinColumn (name = "writer_id")
     private List<Post> posts;
 }

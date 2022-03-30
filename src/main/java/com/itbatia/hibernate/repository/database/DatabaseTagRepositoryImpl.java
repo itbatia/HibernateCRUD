@@ -21,28 +21,12 @@ public class DatabaseTagRepositoryImpl implements TagRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Tag checkedTag = checkForUnique(tag);
-        if (checkedTag == null) {
             Integer id = (Integer) session.save(tag);
             tag.setId(id);
-        } else {
-            tag = checkedTag;
-        }
 
         transaction.commit();
         session.close();
         return tag;
-    }
-
-    private Tag checkForUnique(Tag tag) {
-        if (getAll().size() > 0) {
-            for (Tag t : getAll()) {
-                if (t.getName().equals(tag.getName())) {
-                    return t;
-                }
-            }
-        }
-        return null;
     }
 
     @Override
@@ -86,7 +70,7 @@ public class DatabaseTagRepositoryImpl implements TagRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Tag tag = session.load(Tag.class, id);
+        Tag tag = session.get(Tag.class, id);
         session.delete(tag);
 
         transaction.commit();

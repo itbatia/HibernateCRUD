@@ -22,7 +22,7 @@ public class TagView {
     public Tag getTag() {
         int id = idFromUser();
         if (id != 0) {
-            System.out.printf("Found the Tag - \"%s\"", tagController.getTag(id).getName());
+            System.out.printf("Found the Tag - \"%s\"\n", tagController.getTag(id).getName());
             return tagController.getTag(id);
         } else return null;
     }

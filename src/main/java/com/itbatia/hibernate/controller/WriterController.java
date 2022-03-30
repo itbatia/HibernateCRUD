@@ -21,16 +21,16 @@ public class WriterController {
         return writerService.getAllWriters();
     }
 
-//    public List<Post> getAllFreePosts() {
-//        List<Post> allPosts = postController.getAllPosts();
-//        List<Post> allWritersPosts = new ArrayList<>();
-//        List<Writer> writers = writerService.getAllWriters();
-//        for (Writer w : writers) {
-//            allWritersPosts.addAll(w.getPosts());
-//        }
-//        allPosts.removeAll(allWritersPosts);
-//        return allPosts;
-//    }
+    public List<Post> getAllFreePosts() {
+        List<Post> allPosts = postController.getAllPosts();
+        List<Post> allWritersPosts = new ArrayList<>();
+        List<Writer> writers = writerService.getAllWriters();
+        for (Writer w : writers) {
+            allWritersPosts.addAll(w.getPosts());
+        }
+        allPosts.removeAll(allWritersPosts);
+        return allPosts;
+    }
 
     public void updateWriter(Writer writer) {
         writerService.updateWriter(writer);

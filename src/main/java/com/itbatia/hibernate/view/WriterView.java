@@ -71,7 +71,7 @@ public class WriterView {
                         updateWriterCase3_CreateNewPost(writer);
                         break;
                     case 4:
-//                        updateWriterCase4_AddCreatedPost(writer);
+                        updateWriterCase4_AddCreatedPost(writer);
                         break;
                     case 5:
                         updateWriterCase5_DeletePost(writer);
@@ -119,18 +119,18 @@ public class WriterView {
         writerController.updateWriter(writer);
     }
 
-//    private void updateWriterCase4_AddCreatedPost(Writer writer) {
-//        System.out.print("List of available free posts.");
-//        List<Post> freePosts = writerController.getAllFreePosts();
-//        showPosts(freePosts);
-//        int freePostId = idFreePostFromUser(freePosts);
-//        if (freePostId != 0) {
-//            List<Post> writerPosts = writer.getPosts();
-//            writerPosts.add(postController.getPost(freePostId));
-//            writer.setPosts(writerPosts);
-//            writerController.updateWriter(writer);
-//        }
-//    }
+    private void updateWriterCase4_AddCreatedPost(Writer writer) {
+        System.out.print("List of available free posts.");
+        List<Post> freePosts = writerController.getAllFreePosts();
+        showPosts(freePosts);
+        int freePostId = idFreePostFromUser(freePosts);
+        if (freePostId != 0) {
+            List<Post> writerPosts = writer.getPosts();
+            writerPosts.add(postController.getPost(freePostId));
+            writer.setPosts(writerPosts);
+            writerController.updateWriter(writer);
+        }
+    }
 
     private void updateWriterCase5_DeletePost(Writer writer) {
         System.out.print("List of posts for this writer:");
@@ -153,22 +153,22 @@ public class WriterView {
         }
     }
 
-//    private Integer idFreePostFromUser(List<Post> freePosts) {
-//        System.out.println("Select free post id to add it:");
-//        String stringID = scanner.nextLine();
-//        if (!stringID.matches("\\d+")) {
-//            System.out.println("Incorrect data.");
-//            return 0;
-//        }
-//        int intId = Integer.parseInt(stringID);
-//        for (Post post : freePosts) {
-//            if (post.getId().equals(intId)) {
-//                return intId;
-//            }
-//        }
-//        System.out.println("This post is not among the available posts");
-//        return 0;
-//    }
+    private Integer idFreePostFromUser(List<Post> freePosts) {
+        System.out.println("Select free post id to add it:");
+        String stringID = scanner.nextLine();
+        if (!stringID.matches("\\d+")) {
+            System.out.println("Incorrect data.");
+            return 0;
+        }
+        int intId = Integer.parseInt(stringID);
+        for (Post post : freePosts) {
+            if (post.getId().equals(intId)) {
+                return intId;
+            }
+        }
+        System.out.println("This post is not among the available posts");
+        return 0;
+    }
 
     public void deleteWriterById() {
         Writer writer = getWriter();
