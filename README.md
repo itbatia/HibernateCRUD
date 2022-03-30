@@ -19,15 +19,15 @@
 :white_check_mark: Инициализация БД реализована с помощью - __Flyway__   
 :white_check_mark: Сервисный слой покрыт Unit-тестами (__JUnit + Mockito__)
 
-|***Пример из консоли:***|||
-|:----:|:----:|:----:| 
-|![](screenshots/screen_consol-1.jpg)|![](screenshots/screen_consol-2.jpg)|![](screenshots/screen_consol-3.jpg)|
+|***Пример из консоли:***||
+|:----:|:----:|
+|![](screenshots/consol-1.jpg)|![](screenshots/consol-2.jpg)|
 
 ### Инструкции для запуска приложения:
 
 | № | Этапы выполнения |
 |:----:|:----|
-| 1 | [Скопируйте код на свой ПК](https://github.com/itbatia/HibernateCRUD/archive/refs/heads/master.zip)|
+| 1 | [Скопируйте код на свой ПК](https://github.com/itbatia/HibernateCRUD.git)|
 | 2 | Извлеките содержимое архива. В указанном месте появится папка ApplicationCRUD-master. |
 | 3 | Для локального использования приложения необходимо внести логин, пароль и URL от своей БД MySQL.     Для этого измените файл pom.xml указав в теге <<properties>properties> свои <database.url>, <username<username>> и <password<password>>.     Соответствующие изменения внесите в файл src\main\java\com\itbatia\crud\utils\DatabaseConnection.java в поля DATABASE_URL, USER и PASSWORD.|
 | 4 | Зайдите в папку ApplicationCRUD-master и в адресной строке пропишите: cmd |
