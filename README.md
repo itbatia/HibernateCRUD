@@ -27,16 +27,16 @@
 
 | № | Этапы выполнения |
 |:----:|:----|
-| 1 | [Скопируйте код на свой ПК](https://github.com/itbatia/HibernateCRUD.git)|
-| 2 | Извлеките содержимое архива. В указанном месте появится папка ApplicationCRUD-master. |
-| 3 | Для локального использования приложения необходимо внести логин, пароль и URL от своей БД MySQL.     Для этого измените файл pom.xml указав в теге <<properties>properties> свои <database.url>, <username<username>> и <password<password>>.     Соответствующие изменения внесите в файл src\main\java\com\itbatia\crud\utils\DatabaseConnection.java в поля DATABASE_URL, USER и PASSWORD.|
-| 4 | Зайдите в папку ApplicationCRUD-master и в адресной строке пропишите: cmd |
+| 1 | [Скопируйте код на свой ПК](https://github.com/itbatia/HibernateCRUD/archive/refs/heads/master.zip)|
+| 2 | Извлеките содержимое архива. В указанном месте появится папка HibernateCRUD-master. |
+| 3 | Для локального использования приложения необходимо внести логин, пароль и URL от своей БД PostgreSQL.     Для этого измените файл pom.xml указав в теге <<properties>properties> свои <database.url>, <username<username>> и <password<password>>.     Соответствующие изменения внесите в файл src\main\resources\hibernate.cfg.xml в property: url, username и password.|
+| 4 | Зайдите в папку HibernateCRUD-master и в адресной строке пропишите: cmd |
 |   | ![](screenshots/screen1.jpg)|
 | 5 | Откроется командная строка, в которой необходимо прописать команду: mvn package. Результатом её выполнения будет примерно следующее:|
 |   | ![](screenshots/screen2.jpg)|
-| 6 | Запустите миграцию БД: mvn liquibase:update |
+| 6 | Запустите миграцию БД: mvn flyway:migrate |
 |   | ![](screenshots/screen3.jpg)||
-| 7 | Затем пропишите команду: mvn exec:java -Dexec.mainClass="com.itbatia.crud.Main" |
+| 7 | Затем пропишите команду: mvn exec:java -Dexec.mainClass="com.itbatia.hibernate.Main" |
 |   | ![](screenshots/screen4.jpg)|
 | :triangular_flag_on_post: | Программа запущена и готова к использованию! |
 
