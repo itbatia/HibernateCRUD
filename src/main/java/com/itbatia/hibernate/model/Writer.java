@@ -5,26 +5,24 @@ import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "writer", schema = "public", catalog = "HibernateCRUD")
-@Getter
-@Setter
+@Table(name = "writers", schema = "public")
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Writer {
+public class Writer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SUBSELECT)
-    @JoinColumn (name = "writer_id")
+    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "writer")
     private List<Post> posts;
 }

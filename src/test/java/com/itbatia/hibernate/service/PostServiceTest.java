@@ -35,7 +35,7 @@ public class PostServiceTest {
         Post postExpected = new Post(1, content, postStatus, tags);
 
         when(mock.save(post)).thenReturn(postExpected);
-        Post postActual = postService.createPost(content, tags, postStatus);
+        Post postActual = postService.createPost(content, postStatus, tags);
 
         verify(mock, times(1)).save(post);
         assertEquals(postExpected, postActual);

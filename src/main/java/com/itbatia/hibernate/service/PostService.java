@@ -17,7 +17,7 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public Post createPost(String content, List<Tag> tags, PostStatus postStatus) {
+    public Post createPost(String content, PostStatus postStatus, List<Tag> tags) {
         Post post = new Post(null, content, postStatus, tags);
         return postRepository.save(post);
     }

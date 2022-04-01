@@ -1,5 +1,6 @@
 package com.itbatia.hibernate.utils;
 
+import org.hibernate.Session;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.*;
 import org.hibernate.SessionFactory;
@@ -19,5 +20,9 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public static Session getSession() {
+        return sessionFactory.openSession();
     }
 }

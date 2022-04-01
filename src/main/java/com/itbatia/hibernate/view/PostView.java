@@ -22,7 +22,7 @@ public class PostView {
             tags.add(tagView.createTag());
             System.out.println("Add another tag?\n1 - YES\n2 - NO");
         }
-        Post newPost = postController.createPost(postContent, tags, PostStatus.ACTIVE);
+        Post newPost = postController.createPost(postContent, PostStatus.ACTIVE, tags);
         System.out.println("Post created:");
         showPost(newPost);
         return newPost;

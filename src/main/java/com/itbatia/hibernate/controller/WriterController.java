@@ -25,10 +25,10 @@ public class WriterController {
         List<Post> allPosts = postController.getAllPosts();
         List<Post> allWritersPosts = new ArrayList<>();
         List<Writer> writers = writerService.getAllWriters();
-        for (Writer w : writers) {
-            allWritersPosts.addAll(w.getPosts());
-        }
+        writers.forEach(writer -> allWritersPosts.addAll(writer.getPosts()));
+//        System.out.println("\nBefore - " + allPosts.size());
         allPosts.removeAll(allWritersPosts);
+//        System.out.println("After - " + allPosts.size());
         return allPosts;
     }
 

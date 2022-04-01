@@ -16,7 +16,6 @@
 
         <mapping class="com.itbatia.hibernate.model.Tag"/>
         <mapping class="com.itbatia.hibernate.model.Post"/>
-        <mapping class="com.itbatia.hibernate.model.PostStatus"/>
         <mapping class="com.itbatia.hibernate.model.Writer"/>
     </session-factory>
 </hibernate-configuration>

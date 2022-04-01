@@ -8,8 +8,8 @@ import java.util.List;
 public class PostController {
     private final PostService postService = new PostService();
 
-    public Post createPost(String content, List<Tag> tags, PostStatus postStatus) {
-        return postService.createPost(content, tags, postStatus);
+    public Post createPost(String content, PostStatus postStatus, List<Tag> tags) {
+        return postService.createPost(content, postStatus, tags);
     }
 
     public Post getPost(Integer id) {

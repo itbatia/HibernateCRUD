@@ -1,36 +1,25 @@
-CREATE TABLE public.tag (
+CREATE TABLE public.tags (
 	id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name VARCHAR(50)
 );
 
-CREATE TABLE public.writer (
+CREATE TABLE public.writers (
 	id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name VARCHAR(50)
 );
 
-CREATE TYPE status AS ENUM ('DELETED', 'ACTIVE');
-
-CREATE TABLE public.poststatus(
-    id integer NOT NULL,
-    status status NOT NULL,
-    CONSTRAINT poststatus_pkey PRIMARY KEY (id)
-);
-
-INSERT INTO poststatus (id, status) VALUES (0, 'DELETED');
-INSERT INTO poststatus (id, status) VALUES (1, 'ACTIVE');
-
-CREATE TABLE public.post (
+CREATE TABLE public.posts (
 	id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	content TEXT,
-	post_status INT,
+	post_status VARCHAR(10),
 	writer_id INT,
-	FOREIGN KEY (writer_id) REFERENCES writer (id) ON DELETE CASCADE,
-	FOREIGN KEY (post_status) REFERENCES poststatus (id) ON DELETE CASCADE
+	FOREIGN KEY (writer_id) REFERENCES writers (id) ON DELETE CASCADE
 );
 
-CREATE TABLE public.post_tag (
+CREATE TABLE public.post_tags (
 	post_id INT,
 	tag_id INT,
-	FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE,
-	FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
+	FOREIGN KEY (post_id) REFERENCES posts (id) ON DELETE CASCADE,
+	FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE,
+	UNIQUE (post_id, tag_id)
 );
