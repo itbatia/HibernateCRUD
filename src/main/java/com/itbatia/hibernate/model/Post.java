@@ -2,8 +2,6 @@ package com.itbatia.hibernate.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,11 +25,11 @@ public class Post implements Serializable {
     @Enumerated(EnumType.STRING)
     private PostStatus status;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "post_tags", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "writer_id")
     private Writer writer;
 

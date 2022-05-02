@@ -11,7 +11,7 @@
 
         <!-- Для просмотра количества запросов в БД - true -->
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
         <property name="hibernate.highlight_sql">true</property>
 
         <mapping class="com.itbatia.hibernate.model.Tag"/>

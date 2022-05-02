@@ -11,6 +11,9 @@ public class PostController {
     public Post createPost(String content, PostStatus postStatus, List<Tag> tags) {
         return postService.createPost(content, postStatus, tags);
     }
+    public Post createPost(String content, PostStatus postStatus, List<Tag> tags, Writer writer) {
+        return postService.createPost(content, postStatus, tags, writer);
+    }
 
     public Post getPost(Integer id) {
         return postService.getPost(id);

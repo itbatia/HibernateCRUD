@@ -28,6 +28,21 @@ public class PostView {
         return newPost;
     }
 
+    public Post createPost(Writer writer) {
+        System.out.println("Enter new post content:");
+        String postContent = scanner.nextLine();
+        System.out.println("The post is created. Add tags to it?\n1 - YES\n2 - NO");
+        List<Tag> tags = new ArrayList<>();
+        while (answerFromUser()) {
+            tags.add(tagView.createTag());
+            System.out.println("Add another tag?\n1 - YES\n2 - NO");
+        }
+        Post newPost = postController.createPost(postContent, PostStatus.ACTIVE, tags, writer);
+        System.out.println("Post created:");
+        showPost(newPost);
+        return newPost;
+    }
+
     private boolean answerFromUser() {
         String userInput = scanner.nextLine();
         return userInput.equals("1");

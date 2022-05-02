@@ -7,6 +7,7 @@ import org.hibernate.*;
 import static com.itbatia.hibernate.utils.HibernateUtil.getSession;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DatabasePostRepositoryImpl implements PostRepository {
 
@@ -25,13 +26,15 @@ public class DatabasePostRepositoryImpl implements PostRepository {
     public Post getById(Integer id) {
         try (Session session = getSession()) {
             return (Post) session.createQuery("FROM Post p LEFT JOIN FETCH p.tags WHERE p.id=" +id).uniqueResult();
+//            return (Post) session.createQuery("FROM Post p LEFT JOIN FETCH p.tags WHERE p.id=" +id).uniqueResult();
         }
     }
 
     @Override
     public List<Post> getAll() {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Post p LEFT JOIN FETCH p.tags").list();
+//            return session.createQuery("FROM Post p LEFT JOIN FETCH p.tags ORDER BY p.id ASC").list();
+            return (List<Post>) session.createQuery("FROM Post p LEFT JOIN FETCH p.tags ORDER BY p.id ASC").list().stream().distinct().collect(Collectors.toList());
         }
     }
 

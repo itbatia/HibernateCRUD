@@ -7,6 +7,7 @@ import org.hibernate.*;
 import static com.itbatia.hibernate.utils.HibernateUtil.getSession;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DatabaseWriterRepositoryImpl implements WriterRepository {
 
@@ -31,7 +32,7 @@ public class DatabaseWriterRepositoryImpl implements WriterRepository {
     @Override
     public List<Writer> getAll() {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Writer w LEFT JOIN FETCH w.posts").list();
+            return (List<Writer>) session.createQuery("FROM Writer w LEFT JOIN FETCH w.posts ORDER BY w.id ASC").list().stream().distinct().collect(Collectors.toList());
         }
     }
 
