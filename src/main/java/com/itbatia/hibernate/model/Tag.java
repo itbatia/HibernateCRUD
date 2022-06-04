@@ -1,6 +1,6 @@
 package com.itbatia.hibernate.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -15,14 +15,14 @@ import java.util.List;
 public class Tag implements Serializable {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "post_tags", joinColumns = @JoinColumn(name = "tag_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
+    @ManyToMany(mappedBy = "tags")
     private List<Post> posts;
 
     public Tag(Integer id, String name) {

@@ -21,6 +21,7 @@ public class PostService {
         Post post = new Post(null, content, postStatus, tags);
         return postRepository.save(post);
     }
+
     public Post createPost(String content, PostStatus postStatus, List<Tag> tags, Writer writer) {
         Post post = new Post(null, content, postStatus, tags, writer);
         return postRepository.save(post);

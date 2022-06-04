@@ -9,10 +9,10 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">itbatia7104203</property>
 
-        <!-- Для просмотра количества запросов в БД - true -->
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.highlight_sql">true</property>
+        <!-- Для просмотра количества запросов в БД -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.highlight_sql">false</property>
 
         <mapping class="com.itbatia.hibernate.model.Tag"/>
         <mapping class="com.itbatia.hibernate.model.Post"/>

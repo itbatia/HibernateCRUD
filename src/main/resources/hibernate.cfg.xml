@@ -7,12 +7,12 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/HibernateCRUD</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">itbatia7104203</property>
+        <property name="hibernate.connection.password">password</property>
 
         <!-- Для просмотра количества запросов в БД -->
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.highlight_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.highlight_sql">false</property>
 
         <mapping class="com.itbatia.hibernate.model.Tag"/>
         <mapping class="com.itbatia.hibernate.model.Post"/>

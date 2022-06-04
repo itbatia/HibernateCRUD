@@ -25,14 +25,21 @@ public class DatabaseWriterRepositoryImpl implements WriterRepository {
     @Override
     public Writer getById(Integer id) {
         try (Session session = getSession()) {
-            return (Writer) session.createQuery("FROM Writer w LEFT JOIN FETCH w.posts WHERE w.id=" +id).uniqueResult();
+            Writer writer = session.get(Writer.class, id);
+            if (writer != null) {
+                writer.getPosts().forEach(post -> Hibernate.initialize(post.getTags()));
+            }
+            return writer;
         }
     }
 
     @Override
     public List<Writer> getAll() {
         try (Session session = getSession()) {
-            return (List<Writer>) session.createQuery("FROM Writer w LEFT JOIN FETCH w.posts ORDER BY w.id ASC").list().stream().distinct().collect(Collectors.toList());
+            List<Writer> writers = session.createQuery("SELECT w FROM Writer w LEFT JOIN FETCH w.posts ORDER BY w.id ASC", Writer.class)
+                    .getResultList().stream().distinct().collect(Collectors.toList());
+            writers.forEach(writer -> writer.getPosts().forEach(post -> Hibernate.initialize(post.getTags())));
+            return writers;
         }
     }
 

@@ -15,20 +15,6 @@ public class WriterView {
     private final PostController postController = new PostController();
     private final Scanner scanner = new Scanner(System.in);
 
-//    public void createWriter() {
-//        System.out.println("Enter new writer name:");
-//        String writerName = scanner.nextLine();
-//        List<Post> posts = new ArrayList<>();
-//        System.out.println("The writer is created. Add post to him?\n1 - YES\n2 - NO");
-//        while (answerFromUser()) {
-//            posts.add(postView.createPost());
-//            System.out.println("Add another post?\n1 - YES\n2 - NO");
-//        }
-//        Writer newWriter = writerController.createWriter(writerName, posts);
-//        System.out.println("Writer created:");
-//        showWriter(newWriter);
-//    }
-
     public void createWriter() {
         System.out.println("Enter new writer name:");
         String writerName = scanner.nextLine();

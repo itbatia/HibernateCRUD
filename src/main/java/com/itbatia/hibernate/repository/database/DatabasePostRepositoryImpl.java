@@ -25,16 +25,19 @@ public class DatabasePostRepositoryImpl implements PostRepository {
     @Override
     public Post getById(Integer id) {
         try (Session session = getSession()) {
-            return (Post) session.createQuery("FROM Post p LEFT JOIN FETCH p.tags WHERE p.id=" +id).uniqueResult();
-//            return (Post) session.createQuery("FROM Post p LEFT JOIN FETCH p.tags WHERE p.id=" +id).uniqueResult();
+            Post post = session.get(Post.class, id);
+            if (post != null) {
+                Hibernate.initialize(post.getTags());
+            }
+            return post;
         }
     }
 
     @Override
     public List<Post> getAll() {
         try (Session session = getSession()) {
-//            return session.createQuery("FROM Post p LEFT JOIN FETCH p.tags ORDER BY p.id ASC").list();
-            return (List<Post>) session.createQuery("FROM Post p LEFT JOIN FETCH p.tags ORDER BY p.id ASC").list().stream().distinct().collect(Collectors.toList());
+            return session.createQuery("SELECT p FROM Post p LEFT JOIN FETCH p.tags ORDER BY p.id ASC", Post.class)
+                    .getResultList().stream().distinct().collect(Collectors.toList());
         }
     }
 

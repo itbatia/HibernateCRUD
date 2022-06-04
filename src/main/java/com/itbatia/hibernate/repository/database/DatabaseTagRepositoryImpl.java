@@ -24,14 +24,14 @@ public class DatabaseTagRepositoryImpl implements TagRepository {
     @Override
     public Tag getById(Integer id) {
         try (Session session = getSession()) {
-            return (Tag) session.createQuery("FROM Tag t WHERE t.id=" + id).uniqueResult();
+            return session.get(Tag.class, id);
         }
     }
 
     @Override
     public List<Tag> getAll() {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Tag").list();
+            return session.createQuery("SELECT t FROM Tag t ORDER BY t.id ASC", Tag.class).getResultList();
         }
     }
 

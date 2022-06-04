@@ -1,6 +1,6 @@
 package com.itbatia.hibernate.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -9,12 +9,12 @@ import java.util.List;
 @Entity
 @Table(name = "posts", schema = "public")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post implements Serializable {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -25,13 +25,16 @@ public class Post implements Serializable {
     @Enumerated(EnumType.STRING)
     private PostStatus status;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "post_tags", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @ManyToMany
+    @JoinTable(
+            name = "post_tags",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "writer_id")
-    private Writer writer;
+    @ManyToOne
+    @JoinColumn(name = "writer_id", referencedColumnName = "id")
+    private Writer owner;
 
     public Post(Integer id, String content, PostStatus status, List<Tag> tags) {
         this.id = id;
